@@ -16,13 +16,19 @@
     }
 
     const button = document.getElementById("notifications");
-    button.addEventListener("click", () => {
-      Notification.requestPermission().then((result) => {
-        if (result === "granted") {
-          return registerPeriodicNewsCheck();
-          // installPeriod();
-        }
+    button.addEventListener("click", async () => {
+      const statusP = await navigator.permissions.query({
+        name: "periodic-background-sync",
       });
+
+      const statusN = await navigator.permissions.query({
+        name: "notifications",
+      });
+
+      if (statusP.state === "granted" && statusN.state === "granted") {
+        // Continue registering the periodic sync
+        return registerPeriodicNewsCheck();
+      }
     });
 
     async function registerPeriodicNewsCheck() {
