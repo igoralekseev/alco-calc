@@ -1,1 +1,39 @@
-<script>console.log('hello')</script>
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="shortcut icon" href="https://c.s-microsoft.com/favicon.ico?v2" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>Alco-Calc</title>
+  </head>
+  <body>
+    <button id="notifications">Receive Notification in 5 minute</button>
+  </body>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/service-worker.js");
+    }
+
+    const button = document.getElementById("notifications");
+    button.addEventListener("click", () => {
+      Notification.requestPermission().then((result) => {
+        if (result === "granted") {
+          return registerPeriodicNewsCheck();
+          // installPeriod();
+        }
+      });
+    });
+
+    async function registerPeriodicNewsCheck() {
+      const registration = await navigator.serviceWorker.ready;
+      try {
+        await registration.periodicSync.register("update-alco", {
+          minInterval: 2 * 60 * 1000,
+        });
+      } catch {
+        console.log("Periodic Sync could not be registered!");
+      }
+    }
+  </script>
+</html>

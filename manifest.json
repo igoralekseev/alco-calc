@@ -1,0 +1,8 @@
+{
+    "name": "Alco-Calc",
+    "theme_color": "#ffffff",
+    "background_color": "#000000",
+    "display": "browser",
+    "scope": "/",
+    "start_url": "/alco-calc/"
+  }

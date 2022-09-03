@@ -1,0 +1,14 @@
+{
+  "name": "alco-calc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server -S -C cert.pem"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igoralekseev/alco-calc.git"
+  },
+  "homepage": "https://igoralekseev.github.io/alco-calc/"
+}
