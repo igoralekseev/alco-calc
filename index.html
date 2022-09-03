@@ -31,8 +31,8 @@
         await registration.periodicSync.register("update-alco", {
           minInterval: 2 * 60 * 1000,
         });
-      } catch {
-        console.log("Periodic Sync could not be registered!");
+      } catch (error) {
+        console.log("Periodic Sync could not be registered!", error);
       }
     }
   </script>
